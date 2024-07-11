@@ -1,8 +1,53 @@
-# React + Vite
+Название проекта: Chefis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Описание: ресторан, специализирующийся на итальянской кухне
 
-Currently, two official plugins are available:
+Инструменты: Vite,React,Firebase,GitHub,Rtk,RtkQuerry,sass,hooks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+библиотеки: React,React-router-dom,Redux,ANTD 
+
+Дизайн:
+https://www.figma.com/design/cgKj2d8PMGVoYZeeLyyh23/chefis?node-id=0-1&t=AhFA6teTdi94Strx-0
+
+адаптив: мобильное приложение (от 320px)
+
+Страницы:
+1.Onboarding(1)
+2.Log In(1)
+3.Sign Up(2)
+4.Reservation(7)
+5.Payment(3)
+6.Menu(2)
+7.Basket(одностраничный компонент)
+8.Profile(1)
+9.Contacts(1)
+10.Catering(5)
+11.Description(4)
+12.Select date and time(2)
+
+Бизнес-логика:
+—Точка входа регистрация:
+Сбор данных о пользователе  
+1.Email
+2.Пароль
+валидация:
+1.Совпадения паролей
+2.Валидация на email
+=> подтвердить => данные уходят в базу, сохраняются => успешная регистрация => переход на страницу заказа
+
+—Точка входа авторизация
+Сбор данных:
+1.Email
+2.Пароль
+Проверка на логин и пароль
+=> подтвердить => данные приходят с базы, пользователь заходит в свой профиль на страницу заказа
+
+—Бронирование стола(Reservation):
+1.Пользователь выбирает дату и время
+2.Выбирает стол
+3.Переход к оплате
+
+—Дополнительные услуги(Catering):
+1.Пользователь выбирает дату и время
+2.Получает номер заказа
+3.Обратная связь для уточнений необходимых услуг
