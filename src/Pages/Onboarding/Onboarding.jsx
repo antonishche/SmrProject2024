@@ -1,8 +1,30 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
 import './Onboarding.scss'
+import { Link } from 'react-router-dom'
+import Loading from '../../Components/Loading/Loading';
 
 export default function Onboarding() {
+
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => { 
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
+    setTimeout(function(){setReady(true);}, 500);
+    return () => document.body.style.overflow = 'visible';
+  }, []);
+  
+  if (!ready) {
+    return <Loading/>
+  }
+
   return (
-    <div>Onboarding</div>
+    <div className='container_onboarding'>
+      <h1 className='big_logo_name'>Chefis</h1>
+      <div className="registr_btns">
+        <Link className='to_login big_btn' to='/login'>Войти</Link>
+        <Link className='to_signup under_big_btn' to='/signup'>Создать аккаунт</Link>
+      </div>
+    </div>
   )
 }
