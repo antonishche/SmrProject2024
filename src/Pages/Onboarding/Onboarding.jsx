@@ -10,7 +10,7 @@ export default function Onboarding() {
   useEffect(() => { 
     document.body.style.overflow = 'hidden';
     window.scrollTo(0, 0);
-    setTimeout(function(){setReady(true);}, 500);
+    setReady(true);
     return () => document.body.style.overflow = 'visible';
   }, []);
   
@@ -22,8 +22,8 @@ export default function Onboarding() {
     <div className='container_onboarding'>
       <h1 className='big_logo_name'>Chefis</h1>
       <div className="registr_btns">
-        <Link className='to_login big_btn' to='/login'>Войти</Link>
-        <Link className='to_signup under_big_btn' to='/signup'>Создать аккаунт</Link>
+        <Link className='to_login big_btn' to='/log-in'>Войти</Link>
+        <Link className='to_signup under_big_btn' to='/sign-up'>Создать аккаунт</Link>
       </div>
     </div>
   )

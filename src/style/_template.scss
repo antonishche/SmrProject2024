@@ -1,11 +1,8 @@
 // Registration
-.container_login,
-.container_resetpass,
-.container_signup {
+.container {
     width: 100%;
     height: 100vh;
     background: radial-gradient(137.15% 63.26% at 50.13% 100%, #446E41 0%, #1B1715 100%);
-    background-position: bottom;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -83,11 +80,15 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            .apple_reg{
+            .flex_btn{
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+                .img-in-button{
+                    width: 24px;
+                    height: 24px;
+                }
                 h3{
                     font-size: 16px;
                 }
@@ -141,8 +142,20 @@
     flex-direction: column;
     justify-content: baseline;
     gap: 10px;
-    .errConfPass,
-    .wrong_email_to_reset_pass{
+    .row{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+        .errConfPass{
+        color: #F90000;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    }
+    .errConfPass{
         color: #F90000;
         text-decoration: none;
         font-size: 16px;
