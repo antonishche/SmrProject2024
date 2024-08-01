@@ -25,6 +25,7 @@ export default function SignUpForm() {
   const [registrated, setRegistrated] = useState(false);
   //errors
   const [emailAlreadyInUse, setEmailAlreadyInUse] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
   const [errConfPass, setErrConfPass] = useState(false);
   const [shortPass, setShortPass] = useState(false);
 
@@ -55,6 +56,7 @@ export default function SignUpForm() {
     setEmailAlreadyInUse(false);
     setErrConfPass(false);
     setShortPass(false);
+    setInvalidEmail(false);
     if (confPass !== password) {
       setErrConfPass(true);
       return;
@@ -80,6 +82,10 @@ export default function SignUpForm() {
         setEmailAlreadyInUse(true);
         setComplete(false);
         return;
+      }else if (error.code === 'auth/invalid-email') {
+        setInvalidEmail(true);
+        setComplete(false);
+        return;
       }
       setComplete(false);
     })
@@ -101,6 +107,7 @@ export default function SignUpForm() {
             autoComplete='off'
             required
           />
+          {invalidEmail && <p className='errConfPass'>Неверный email</p>}
           {emailAlreadyInUse && <p className='errConfPass'>Email уже исползуется</p>}
         </div>
         <div className="err_box">

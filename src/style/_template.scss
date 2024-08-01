@@ -73,6 +73,11 @@
                 text-decoration: none;
                 color: #FFF0F0;
                 font-family: "Montserrat Alternates", sans-serif;
+                &:required{
+                    border-width: 2px;
+                    border-color: #ff303e;
+                    background-color: rgb(255 134 48 / 0.1);
+                }
             }
         }
         .to_another_pages{
