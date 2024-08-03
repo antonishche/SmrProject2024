@@ -9,6 +9,16 @@ export default function Reservation() {
   const auth = getAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        navigate('/onboarding')
+        setUser(false)
+        return
+      }
+    })
+  }, [])
+
   return (
     <div className="container_reservation">
       <Link className='big_btn' to={'/profile'}>Profile</Link>

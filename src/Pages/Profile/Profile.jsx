@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { getAuth, signOut, onAuthStateChanged, updateProfile, updateEmail } from 'firebase/auth';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useNavigate, Link } from 'react-router-dom';
-// import { setUser } from '../../store/slices/userSlice';
 import TopPanel from '../../Components/TopPanel/TopPanel';
 import './Profile.scss'
 import { async } from '@firebase/util';
@@ -10,73 +10,80 @@ import Loading from '../../Components/Loading/Loading';
 export default function Profile() {
 
   const auth = getAuth();
+  const storage = getStorage();
   const navigate = useNavigate();
   const [user, setUser] = useState(false)
   const arrow = "<";
 
-  const ref = useRef(null)
-  const handleClick = useCallback(() => ref.current?.click(), []);
+  const refImg = useRef(null)
+  const handleClick = useCallback(() => refImg.current?.click(), []);
 
-  const [name, setName] = useState(false)
-  const [email, setEmail] = useState(false)
-  const [number, setNumber] = useState(false)
-  const [image, setImage] = useState('');
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [number, setNumber] = useState('')
+  const [image, setImage] = useState('profile.webp');
+  const [file, setFile] = useState();
+  
+
+  const [loading, setLoading] = useState(false)
 
   function handleChange(e) {
-    console.log(e.target.files);
-    setImage(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files[0]) {
+      console.log(e.target.files);
+      setImage(URL.createObjectURL(e.target.files[0]));
+      setFile(e.target.files[0])
+    }
+  }
+
+  async function upload(e) {
+    e.preventDefault()
+    const fileRef = ref(storage, auth.currentUser.uid + '.png');
+    setLoading(true)
+    const snapshoot = await uploadBytes(fileRef, file)
+    const photoURL = await getDownloadURL(fileRef)
+    updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL,
+    }).then(() => {
+      console.log(auth.currentUser);
+    }).catch((error) => {
+      console.log(error);
+    });
+    setLoading(false)
   }
 
   useEffect(() => {
+    setLoading(true)
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         navigate('/onboarding')
         setUser(false)
+        setLoading(false)
         return
       }
       setEmail(currentUser.email)
-      setName(currentUser.displayName)
-      setNumber(currentUser.phoneNumber)
-      setImage(currentUser.photoURL)
+        setName(currentUser.displayName)
+        setNumber(currentUser.phoneNumber)
+      if (auth.currentUser?.photoURL) {
+        setImage(currentUser.photoURL)
+      }
       setUser({
         email: email,
         displayName: name,
         phoneNumber: number,
         photoURL: image
       })
-      if (image == undefined) {
-        setImage('profile.webp')
-      }
+      setLoading(false)
     })
-  }, [])
+  }, [auth.currentUser])
 
-  if (!user) {
+  if (!user || loading) {
     return <Loading />
   }
 
-  // function changeEmail(event) {
-  //   event.preventDefault()
-  //   updateEmail(auth.currentUser, email).then(({user}) => {
-  //     // Email updated!
-  //     console.log(user);
-  //     // ...
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     // An error occurred
-  //     // ...
-  //   });
-
-  // }
-
   function addProfileDetails(event) {
-    event.preventDefault()
-    updateProfile(auth.currentUser, {
-      displayName: name, photoURL: image,
-    }).then(() => {
-      console.log(auth.currentUser);
-    }).catch((error) => {
-      console.log(error);
-    });
+    event.preventDefault();
+    upload(image, auth.currentUser, setLoading);
   }
 
   function signOutUser(event) {
@@ -100,13 +107,13 @@ export default function Profile() {
           <input
             className='image_input'
             type="file"
-            ref={ref}
+            ref={refImg}
             style={{ display: 'none' }}
             onChange={handleChange} />
           <input type="text" onChange={(e) => { setName(e.target.value) }} placeholder="Имя" defaultValue={name} required />
           <input type="email" readOnly value={email} />
           {/* <input type="text" onChange={(e) => { setNumber(e.target.value) }} placeholder="Телефон" defaultValue={number} /> */}
-          <button className='big_btn' type="submit" onClick={addProfileDetails}>Сохранить изменения</button>
+          <button disabled={!image} className='big_btn' type="submit" onClick={upload}>Сохранить изменения</button>
           <button className='log_out' onClick={signOutUser}>Выйти</button>
         </form>
       </div>
