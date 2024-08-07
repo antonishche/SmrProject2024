@@ -7,7 +7,7 @@ export default function LogIn() {
   
   return (
     <div className='container'>
-      <TopPanel link={'/onboarding'}/>
+      <TopPanel link={'/onboarding'} name='Chefis' />
       <LogInForm/>
     </div>
   )

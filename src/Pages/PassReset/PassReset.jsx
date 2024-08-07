@@ -3,12 +3,12 @@ import './PassReset.scss';
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import Loading from '../../Components/Loading/Loading';
 import { Link } from 'react-router-dom';
+import TopPanel from '../../Components/TopPanel/TopPanel';
 
 export default function PassReset() {
 
     const auth = getAuth();
     const [email, setEmail] = useState('');
-    const arrow = "<";
     const [done, setDone] = useState(false);
     const [hideButton, setHideButton] = useState(true);
     const [wrongEmail, setWrongEmail] = useState(false);
@@ -36,15 +36,13 @@ export default function PassReset() {
 
     return (
         <div className='container'>
-            <div className="logo_name_box">
-                <Link className='go_back' to='/log-in'><p className='arr_transform'>{arrow}</p></Link>
-                <h1 className='logo_name'>Chefis</h1>
-            </div>
+            <TopPanel link='/log-in' name='Chefis' />
             <div className="form_signup_and_login">
                 <form onSubmit={passwordReset} className='inputs_signup_and_login' action="">
                     {hideButton && <h3 className='tell_the_deal'>Письмо для сброса пароля на адрес:</h3>}
                     {hideButton && <div className="err_box">
                         <input
+                            className='reg_input'
                             type="email"
                             value={email}
                             placeholder='Email'

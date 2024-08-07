@@ -7,7 +7,7 @@ export default function SignUp() {
   
   return (
     <div className='container'>
-      <TopPanel link={'/onboarding'} />
+      <TopPanel link='/onboarding' name='Chefis' />
       <SignUpForm />
     </div>
   )

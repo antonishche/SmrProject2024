@@ -33,10 +33,13 @@
         position: relative;
         margin-top: 5vh;
         .profile_image{
+            align-self: center;
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            align-self: center;
+            background-image: url('profile.webp');
+            background-size: cover;
+            background-position: center;
         }
         .del_img{
             align-self: flex-end;
@@ -60,6 +63,7 @@
         }
 
         .go_back {
+            align-self: flex-start;
             position: absolute;
             left: 0;
             color: #FFF0F0;

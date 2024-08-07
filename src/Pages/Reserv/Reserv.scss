@@ -1,0 +1,138 @@
+.container_reserv{
+    width: 100%;
+    min-height: 100vh;
+    background: radial-gradient(137.15% 63.26% at 50.13% 100%, #446E41 0%, #1B1715 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+}
+
+.reserv_form {
+    color: #FFF0F0;
+    width: 84%;
+    font-family: "Montserrat Alternates", sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    gap: 40px;
+    padding-bottom: 40px;
+
+    .input_box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+
+        .chose_place {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+            .outside,
+            .inside{
+                width: 180px;
+                height: 220px;
+                background-size: cover;
+                background-position: center;
+                border-radius: 10px;
+            }
+            .outside{
+                background-image: url('../../assets/outside.jfif');
+            }
+            .inside{
+                background-image: url('../../assets/inside.jfif');
+            }
+        }
+
+        .active{
+            border: 1px solid #4AC99B;
+        }
+
+        .passive{
+            border: none;
+        }
+
+        .reserv_inp {
+            width: 100%;
+            height: 60px;
+            border-radius: 15px;
+            padding-left: 24px;
+            font-size: 16px;
+            background-color: #1E0106;
+            text-decoration: none;
+            color: #FFF0F0;
+            font-family: "Montserrat Alternates", sans-serif;
+            outline: none;
+            &::after{
+                color: white;
+            }
+            &::-webkit-inner-spin-button {
+                color: white;
+              }
+            &::-webkit-calendar-picker-indicator {
+                width: 24px;
+                height: 24px;
+                margin-right: 20px;
+                background-image: url('calendar.png');
+                background-size: cover;
+            }
+        }
+
+        .guests_inp {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 60px;
+            border-radius: 15px;
+            padding: 0 24px;
+            font-size: 20px;
+            background-color: #1E0106;
+            text-decoration: none;
+            color: #FFF0F0;
+            font-family: "Montserrat Alternates", sans-serif;
+
+            .change_num {
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+
+            .num {
+                position: absolute;
+                left: 48%;
+            }
+
+            .box {
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+        }
+
+    }
+}
+
+@media screen and (min-width: 700px){
+    .reserv_form .input_box .chose_place,
+    .table_columns{
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .reserv_form .input_box .chose_place{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+

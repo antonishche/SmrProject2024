@@ -1,0 +1,45 @@
+.logo_name_box {
+    display: flex;
+    width: 84%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 5vh;
+    .green{
+        color: #3C673C;
+        position: absolute;
+        left: 0;
+        font-weight: 900;
+        font-size: 40px;
+        padding-right: 20px;
+        cursor: pointer;
+        text-decoration: none;
+
+        .arr_transform {
+            transform: scaleX(0.5);
+        }
+    }
+
+    .logo_name {
+        color: #FFF0F0;
+        font-family: "Lobster", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 40px;
+    }
+
+    .go_back {
+        position: absolute;
+        left: 0;
+        color: #FFF0F0;
+        font-weight: 600;
+        font-size: 40px;
+        padding-right: 20px;
+        cursor: pointer;
+        text-decoration: none;
+
+        .arr_transform {
+            transform: scaleX(0.5);
+        }
+    }
+}

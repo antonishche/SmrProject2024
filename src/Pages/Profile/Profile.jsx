@@ -7,12 +7,13 @@ import './Profile.scss'
 import { async } from '@firebase/util';
 import Loading from '../../Components/Loading/Loading';
 
+import { useAuth } from '../../hooks/use-auth';
+
 export default function Profile() {
 
   const auth = getAuth();
   const storage = getStorage();
   const navigate = useNavigate();
-  const [user, setUser] = useState(false)
   const arrow = "<";
 
   const refImg = useRef(null)
@@ -21,9 +22,10 @@ export default function Profile() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [number, setNumber] = useState('')
-  const [image, setImage] = useState('profile.webp');
-  const [file, setFile] = useState();
-  
+  const [image, setImage] = useState('');
+  const [file, setFile] = useState('');
+  const [user, setUser] = useState('');
+
 
   const [loading, setLoading] = useState(false)
 
@@ -39,6 +41,9 @@ export default function Profile() {
     e.preventDefault()
     const fileRef = ref(storage, auth.currentUser.uid + '.png');
     setLoading(true)
+    if (image === '') {
+      delImage()
+    }
     const snapshoot = await uploadBytes(fileRef, file)
     const photoURL = await getDownloadURL(fileRef)
     updateProfile(auth.currentUser, {
@@ -50,6 +55,21 @@ export default function Profile() {
       console.log(error);
     });
     setLoading(false)
+    setUser({
+      name: auth.currentUser.displayName,
+      image: auth.currentUser.photoURL,
+    })
+  }
+
+  async function delImage() {
+    const desertRef = storage.child;
+    await desertRef.delete(auth.currentUser.uid + '.png').then(()=>{
+      console.log(auth.currentUser);
+      setLoading(false)
+    }).catch((error)=>{
+      console.log(error);
+      setLoading(false)
+    });
   }
 
   useEffect(() => {
@@ -57,33 +77,29 @@ export default function Profile() {
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         navigate('/onboarding')
-        setUser(false)
         setLoading(false)
         return
       }
+      setUser({
+        name: currentUser.displayName,
+        image: currentUser.photoURL,
+      })
       setEmail(currentUser.email)
-        setName(currentUser.displayName)
+      if (auth.currentUser.phoneNumber) {
         setNumber(currentUser.phoneNumber)
+      }
       if (auth.currentUser?.photoURL) {
         setImage(currentUser.photoURL)
       }
-      setUser({
-        email: email,
-        displayName: name,
-        phoneNumber: number,
-        photoURL: image
-      })
+      if (auth.currentUser.displayName) {
+        setName(currentUser.displayName)
+      }
       setLoading(false)
     })
   }, [auth.currentUser])
 
-  if (!user || loading) {
+  if (loading) {
     return <Loading />
-  }
-
-  function addProfileDetails(event) {
-    event.preventDefault();
-    upload(image, auth.currentUser, setLoading);
   }
 
   function signOutUser(event) {
@@ -100,10 +116,10 @@ export default function Profile() {
       <div className="logo_name_box">
         <Link className='go_back' to={'/'}><p className='arr_transform'>{arrow}</p></Link>
         <img className='profile_image' onClick={handleClick} src={image} />
-        <h1 className='del_img' onClick={() => setImage('profile.webp')}>+</h1>
+        <h1 className='del_img' onClick={() => setImage('')}>+</h1>
       </div>
       <div className='form_signup_and_login'>
-        <form action="" onSubmit={() => console.log('hi')} className='inputs_signup_and_login'>
+        <form action="" onSubmit={upload} className='inputs_signup_and_login'>
           <input
             className='image_input'
             type="file"
@@ -113,7 +129,7 @@ export default function Profile() {
           <input type="text" onChange={(e) => { setName(e.target.value) }} placeholder="Имя" defaultValue={name} required />
           <input type="email" readOnly value={email} />
           {/* <input type="text" onChange={(e) => { setNumber(e.target.value) }} placeholder="Телефон" defaultValue={number} /> */}
-          <button disabled={!image} className='big_btn' type="submit" onClick={upload}>Сохранить изменения</button>
+          <button disabled={name == user.name && image == user.image} className='big_btn' type="submit">Сохранить изменения</button>
           <button className='log_out' onClick={signOutUser}>Выйти</button>
         </form>
       </div>

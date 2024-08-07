@@ -73,6 +73,7 @@ export default function LogInForm() {
         <div className='form_signup_and_login'>
             <form onSubmit={loginUser} className='inputs_signup_and_login' action="">
                     <input
+                        className='reg_input'
                         type="email"
                         value={email}
                         placeholder='Email'
@@ -82,6 +83,7 @@ export default function LogInForm() {
                     />
                 <div className="err_box">
                     <input
+                        className='reg_input'
                         type="password"
                         placeholder='Пароль'
                         value={pass}

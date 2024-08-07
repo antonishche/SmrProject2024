@@ -1,0 +1,190 @@
+.cont_tables{
+    width: 86%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #FFF0F0;
+    justify-content: space-evenly;
+    font-family: "Montserrat Alternates", sans-serif;
+    gap: 20px;
+    .table_columns{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .two_col{
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            .column{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 40px;
+                .table{
+                    position: relative;
+                    .cher{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background-color: #b9b9b9a0;
+                        // z-index: 1;
+                        transition: 0.5s;
+                    }
+                    .one{
+                        position: absolute;
+                        top: -10px;
+                        left: 10px;
+                    }
+                    .two{
+                        position: absolute;
+                        top: -10px;
+                        right: 10px;
+                    }
+                    .three{
+                        position: absolute;
+                        bottom: -10px;
+                        left: 10px;
+                    }
+                    .four{
+                        position: absolute;
+                        bottom: -10px;
+                        right: 10px;
+                    }
+                    input[type=radio] {
+                        display: none;
+                    }
+                    label {
+                        position: relative;
+                        z-index: 10;
+                        width: 80px;
+                        height: 60px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        border: none;
+                        border-radius: 10px;
+                        user-select: none;
+                        background-color: rgb(136, 136, 136);
+                        transition: 0.5s;
+                    }
+                    input[type=radio]:checked + label {
+                        background: #00000000;
+                        border: 1px solid #FFF0F0;
+                    }
+                    label:hover {
+                        color: rgb(255, 255, 255);
+                        background-color: #afafafac;
+                    }
+                    input[type=radio]:disabled + label {
+                        background-color: rgba(138, 49, 49, 0.459);
+                    }
+                }
+            }
+        }
+        .one_col{
+            display: flex;
+            gap: 40px;
+            .column{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 40px;
+                .table{
+                    position: relative;
+                    width: 60px;
+                    height: 60px;
+                    transform: rotate(45deg);
+                    p{
+                        transform: rotate(-45deg);
+                    }
+                    .cher{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                        background-color: #b9b9b9a0;
+                        z-index: 10;
+                        transition: 0.5s;
+                    }
+                    .five{
+                        position: absolute;
+                        top: -10px;
+                        left: 20px;
+                    }
+                    .six{
+                        position: absolute;
+                        bottom: -10px;
+                        right: 20px;
+                    }
+                    .seven{
+                        position: absolute;
+                        top: 20px;
+                        left: -10px;
+                    }
+                    .eight{
+                        position: absolute;
+                        bottom: 20px;
+                        right: -10px;
+                    }
+                    input[type=radio] {
+                        display: none;
+                    }
+                    label {
+                        position: relative;
+                        z-index: 100;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        border: none;
+                        border-radius: 10px;
+                        user-select: none;
+                        background-color: rgb(136, 136, 136);
+                        transition: 0.5s;
+                    }
+                    input[type=radio]:checked + label {
+                        background: #00000000;
+                        border: 1px solid #FFF0F0;
+                    }
+                    label:hover {
+                        color: rgb(255, 255, 255);
+                        background-color: #afafafac;
+                    }
+                    input[type=radio]:disabled + label {
+                        background-color: rgba(138, 49, 49, 0.459);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    .two_col,
+    .one_col{
+        transform: scale(0.8);
+    }
+    .cont_tables .table{
+        left: -20px;
+    }
+    .table_columns{
+        padding-right: 20px;
+    }
+    .cont_tables h1{
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .two_col,
+    .one_col{
+        transform: scale(0.7);
+        left: -30px;
+    }
+    .cont_tables h1{
+        font-size: 25px;
+    }
+}

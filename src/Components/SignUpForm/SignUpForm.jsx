@@ -100,6 +100,7 @@ export default function SignUpForm() {
       {duringRegistr && <form onSubmit={creatUser} className='inputs_signup_and_login' action="">
         <div className="err_box">
           <input
+            className='reg_input'
             type="email"
             value={email}
             placeholder='Email'
@@ -112,6 +113,7 @@ export default function SignUpForm() {
         </div>
         <div className="err_box">
           <input
+            className='reg_input'
             type="password"
             placeholder='Пароль'
             value={password}
@@ -123,6 +125,7 @@ export default function SignUpForm() {
         </div>
         <div className="err_box">
           <input
+            className='reg_input'
             type="password"
             placeholder='Подтвердить пароль'
             value={confPass}

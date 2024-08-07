@@ -9,37 +9,6 @@
     justify-content: start;
     align-items: center;
     gap: 20px;
-
-    .logo_name_box {
-        display: flex;
-        width: 84%;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin-top: 5vh;
-
-        .logo_name {
-            color: #FFF0F0;
-            font-family: "Lobster", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 40px;
-        }
-
-        .go_back {
-            position: absolute;
-            left: 0;
-            color: #FFF0F0;
-            font-weight: 600;
-            font-size: 40px;
-            padding-right: 20px;
-            cursor: pointer;
-            text-decoration: none;
-            .arr_transform{
-                transform: scaleX(0.5);
-            }
-        }
-    }
     .form_signup_and_login{
         color: #FFF0F0;
         width: 84%;
@@ -62,7 +31,7 @@
             input::placeholder{
                 color: #FFDDDD;
             }
-            input{
+            .reg_input{
                 width: 100%;
                 height: 60px;
                 border: none;
@@ -73,11 +42,6 @@
                 text-decoration: none;
                 color: #FFF0F0;
                 font-family: "Montserrat Alternates", sans-serif;
-                &:required{
-                    border-width: 2px;
-                    border-color: #ff303e;
-                    background-color: rgb(255 134 48 / 0.1);
-                }
             }
         }
         .to_another_pages{
@@ -102,6 +66,29 @@
     }
 }
 
+.none{
+    display: none;
+}
+
+.cube_btn{
+    width: 84%;
+    height: 70px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #FFF0F0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #1E0106;
+}
+
 .big_btn {
     width: 100%;
     height: 60px;
@@ -118,6 +105,10 @@
     justify-content: center;
     align-items: center;
     color: #1E0106;
+    &:disabled{
+        background-color: rgba(174, 174, 174, 0.257);
+        color: rgba(205, 205, 205, 0.555);
+    }
 }
 
 .under_big_btn {

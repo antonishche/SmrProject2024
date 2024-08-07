@@ -6,7 +6,10 @@ const initialState = {
     id: null,
     contact: null,
     name: null,
-    surname: null,
+    data: null,
+    place: null,
+    guests: null,
+    table: null,
 }
 
 const userSlice = createSlice({
@@ -18,6 +21,14 @@ const userSlice = createSlice({
             state.token = action.payload.token;
             state.id = action.payload.id;
         },
+        setDataAndPlace(state, action) {
+            state.data = action.payload.data;
+            state.guests = action.payload.guests;
+            state.place = action.payload.place;
+        },
+        setTable(state, action) {
+            state.table = action.payload.table;
+        },
         removeUser(state) {
             state.email = null;
             state.token = null;
@@ -26,6 +37,6 @@ const userSlice = createSlice({
     },
 });
 
-export const {setUser, removeUser} = userSlice.actions;
+export const {setUser, removeUser, setDataAndPlace, setTable} = userSlice.actions;
 
 export default userSlice.reducer;

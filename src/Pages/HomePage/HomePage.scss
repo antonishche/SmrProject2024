@@ -1,0 +1,88 @@
+$white: #FFF0F0;
+.container_reservation {
+    height: 100vh;
+    position: relative;
+    flex-direction: column;
+    width: 100%;
+    background-image: url('../../assets/reservation.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    color: $white;
+
+    .start_reserv {
+        width: 84%;
+        height: 80px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        border: none;
+        font-size: 35px;
+        font-family: "Montserrat Alternates", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        cursor: pointer;
+        text-decoration: none;
+        background-color: #6b6b6ba8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+    }
+    .self_unrender{
+        width: 100%;
+        height: 50vh;
+        position: absolute;
+        top: 0;
+    }
+    .active{
+        transform: translateY(-50vh);
+    }
+    .black_box{
+        width: 100%;
+        height: 50vh;
+        position: absolute;
+        bottom: -50vh;
+        background-color: rgb(25, 25, 25);
+        font-family: "Montserrat Alternates", sans-serif;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        border-radius: 15px 15px 0 0;
+        transition: 0.5s;
+        transition-timing-function: ease;
+        
+        h2{
+            font-size: 20px;
+            
+        }
+        .add_reserv{
+            background-color: #3C673C;
+            font-family: "Montserrat Alternates", sans-serif;
+            color: $white;
+            width: 70px;
+            height: 70px;
+            font-size: 45px;
+            font-weight: 400;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        p{
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 500px){
+    .container_reservation{
+      .start_reserv{
+        height: 60px;
+        border-radius: 10px;
+        font-size: 22px;
+    }  
+    }
+}
