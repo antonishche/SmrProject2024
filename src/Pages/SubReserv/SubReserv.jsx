@@ -1,18 +1,20 @@
-import React, {useEffect} from 'react'
+import React, { useState, useEffect} from 'react'
 import './SubReserv.scss'
 import { getAuth } from 'firebase/auth';
 import { useAuth } from '../../hooks/use-auth';
 import TopPanel from '../../Components/TopPanel/TopPanel';
 import { useNavigate } from 'react-router-dom';
 import { ref, set } from "firebase/database";
-import { collection, addDoc } from "firebase/firestore"; 
 import { db } from '../../main';
+import Loading from '../../Components/Loading/Loading';
 
 export default function SubReserv() {
     
     const {place, data, guests, table, isTable} = useAuth()
     const navigate = useNavigate()
     const auth = getAuth()
+    const [loading, setLoading] = useState(false)
+    const [onProcess, setOnProcess] = useState(true)
 
     useEffect(()=>{
         if (isTable) {
@@ -22,34 +24,31 @@ export default function SubReserv() {
     })
 
     function writeUserData() {
-        set(ref(db, 'users/' + auth.currentUser.uid), {
+        setLoading(true)
+        set(ref(db, 'users/reservation/' + auth.currentUser.uid), {
             place: place,
             data: data,
             guests : guests,
             table: table,
-        });
+        })
+        .then(() => {
+            setOnProcess(false)
+            setLoading(false)
+          })
+          .catch((error) => {
+            console.log(error);
+            setLoading(false)
+          });
       }
 
-    // async function subReserv() {
-    //     try {
-    //         const docRef = await addDoc(collection(db, "users"), {
-    //           id: auth.currentUser.uid,
-    //           place: place,
-    //           data: data,
-    //           guests: guests,
-    //           table: table,
-    //         });
-    //         console.log("Document written with ID: ", docRef.id);
-    //         console.log(docRef);
-    //       } catch (e) {
-    //         console.error("Error adding document: ", e);
-    //       }
-    // }
+      if (loading) {
+        return <Loading/>
+      }
 
   return (
     <div className="container">
-        <TopPanel link={'/reserv'}/>
-        <div className="info_reserv">
+        {onProcess && <TopPanel link={'/tables'}/>}
+        {onProcess && <div className="info_reserv">
         <h2>Подтвердить <br />бронироование?</h2>
             <div className='between'>
                 <p>Дата:</p>
@@ -67,8 +66,14 @@ export default function SubReserv() {
                 <p>Номер столика:</p>
                 <p>{table}</p>
             </div>
-            <button className="big_btn" onClick={()=>writeUserData()}>Подтвердить</button>
-        </div>
+            <button className="big_btn" onClick={writeUserData}>Подтвердить</button>
+        </div>}
+        {!onProcess && <TopPanel link={'/tables'}/>}
+        {!onProcess && <div className='info_reserv'>
+            <h2><p>Success</p> <br />Ваш столик зарезервирован</h2>   
+            <h2>Примечание:<br/> Бронирование только <br/>на 2 часа</h2>
+            <div className="big_btn" onClick={()=>navigate('/payment')}>Перейти к оплате</div>
+        </div>}
     </div>
   )
 }

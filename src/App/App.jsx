@@ -11,6 +11,7 @@ import Profile from './../Pages/Profile/Profile';
 import Reserv from './../Pages/Reserv/Reserv';
 import Tables from '../Pages/Tables/Tables';
 import SubReserv from '../Pages/SubReserv/SubReserv';
+import Payment from '../Pages/Payment/Payment';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/tables' Component={Tables} />
       <Route path='/reserv' Component={Reserv} />
       <Route path='/sub-reserv' Component={SubReserv} />
+      <Route path='/payment' Component={Payment} />
       <Route path='*' Component={Error} />
     </Routes>
   )

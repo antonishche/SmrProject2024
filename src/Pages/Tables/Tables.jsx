@@ -2,8 +2,6 @@ import React, { useState, useRef, useEffect } from 'react'
 import './Tables.scss'
 import { v4 as uuid } from 'uuid'
 import TopPanel from '../../Components/TopPanel/TopPanel';
-import { async } from '@firebase/util';
-import { ref } from 'firebase/storage';
 import { useAuth } from '../../hooks/use-auth';
 import { useDispatch } from 'react-redux'
 import { setTable } from '../../store/slices/userSlice';
@@ -11,10 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Tables() {
 
-    const {place, guests, data, isData} = useAuth()
+    const {isData} = useAuth()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    // console.log(place, guests, data);
 
     const arrNum = {
         firstColumn: [1, 2, 3, 4],
@@ -74,7 +71,7 @@ export default function Tables() {
                                         <div className="cher two"></div>
                                         <div className="cher three"></div>
                                         <div className="cher four"></div>
-                                        <input onChange={(e)=>{ref.current = e.target.value;console.log(ref.current)}} id={"radio-" + el} type="radio" name="radio" value={el}/>
+                                        <input onChange={(e)=>ref.current = e.target.value} id={"radio-" + el} type="radio" name="radio" value={el}/>
                                         <label htmlFor={"radio-" + el}>{el}</label>
                                     </div>
                                 )

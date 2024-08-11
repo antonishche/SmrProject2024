@@ -10,7 +10,7 @@ import { setDataAndPlace } from '../../store/slices/userSlice';
 export default function Reservation() {
 
   const [loading, setLoading] = useState(false)
-  const [guests, setGuests] = useState(0)
+  const [guests, setGuests] = useState(1)
   const [selectedDateTime, setSelectedDateTime] = useState('');
   const [place, setPlace] = useState(false)
 
@@ -58,21 +58,19 @@ export default function Reservation() {
             className={!selectedDateTime ? 'reserv_inp passive' : 'reserv_inp active'}
             value={selectedDateTime}
             onChange={(e) => setSelectedDateTime(e.target.value)}
-            required
           />
         </div>
         <div className="input_box">
           <p>Кол-во гостей?</p>
           <div className={!guests ? 'guests_inp passive' : 'guests_inp active'}>
             <div className="box">
-              <img onClick={() => setGuests(guests - 1)} className={guests == 0 ? 'none' : "change_num"} src="minus.png" alt="" />
+              <img onClick={() => setGuests(guests - 1)} className={guests == 1 ? 'none' : "change_num"} src="minus.png" alt="" />
             </div>
             <p className='num'>{guests}</p>
             <div className="box">
               <img onClick={() => setGuests(guests + 1)} className={guests == 10 ? 'none' : "change_num"} src="plus.png" alt="" />
             </div>
           </div>
-          {guests == 0 && <p style={{ color: '#F90000' }}>Должен быть хотябы 1</p>}
           {guests == 10 && <p style={{ color: '#F90000' }}>Это максимум</p>}
         </div>
         <div className="input_box">
