@@ -1,0 +1,24 @@
+.info_box{
+    width: 86%;
+    color: white;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    justify-content: space-between;
+    gap: 25px;
+    .digital{
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        img{
+            width: 60px;
+            height: 60px;
+        }
+    }
+}
