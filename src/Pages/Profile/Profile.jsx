@@ -114,7 +114,7 @@ export default function Profile() {
   return (
     <div className="container_profile">
       <div className="logo_name_box">
-        <Link className='go_back' to={'/'}><p className='arr_transform'>{arrow}</p></Link>
+        <Link className='go_back' to={'/menu'}><p className='arr_transform'>{arrow}</p></Link>
         <img className='profile_image' onClick={handleClick} src={image} />
         <h1 className='del_img' onClick={() => setImage('')}>+</h1>
       </div>
@@ -127,7 +127,7 @@ export default function Profile() {
             style={{ display: 'none' }}
             onChange={handleChange} />
           <input type="text" onChange={(e) => { setName(e.target.value) }} placeholder="Имя" defaultValue={name} required />
-          <input type="email" readOnly value={email} />
+          <input type="email" style={{outline: 'none'}} readOnly value={email} />
           {/* <input type="text" onChange={(e) => { setNumber(e.target.value) }} placeholder="Телефон" defaultValue={number} /> */}
           <button disabled={name == user.name && image == user.image} className='big_btn' type="submit">Сохранить изменения</button>
           <button className='log_out' onClick={signOutUser}>Выйти</button>

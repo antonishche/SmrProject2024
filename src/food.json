@@ -1,0 +1,82 @@
+[
+    {
+        "name": "PIZZA",
+        "image": "pizza.jfif",
+        "souce": [
+            {
+                "name": "Margherita",
+                "image": "pizza.jfif",
+                "descr": "Сыр моцарелла, спелые помидоры, листья базилика",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            },
+            {
+                "name": "MARINARA",
+                "image": "pizza1.jfif",
+                "descr": "bla bla...",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            },
+            {
+                "name": "CARBONARA",
+                "image": "pizza2.jfif",
+                "descr": "bla bla...",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            },
+            {
+                "name": "ROMANA",
+                "image": "pizza3.jfif",
+                "descr": "bla bla...",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            },
+            {
+                "name": "GREEK",
+                "image": "pizza4.jfif",
+                "descr": "bla bla...",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            },
+            {
+                "name": "ANANAS",
+                "image": "ananas.jpg",
+                "descr": "bla bla...",
+                "kcal": "230",
+                "cost": "10",
+                "multiplier": "1.4",
+                "type": "pizza"
+            }
+        ]
+    },
+    {
+        "name": "RISOTO",
+        "image": "risoto.jfif",
+        "souce": []
+    },
+    {
+        "name": "PASTA",
+        "image": "pasta.jfif",
+        "souce": []
+    },
+    {
+        "name": "DESSERTS",
+        "image": "desserts.jfif",
+        "souce": []
+    },
+    {
+        "name": "COCTAILS",
+        "image": "coctails.jfif",
+        "souce": []
+    }
+]

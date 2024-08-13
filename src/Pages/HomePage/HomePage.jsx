@@ -36,7 +36,7 @@ export default function Reservation() {
 
   return (
     <div className="container_reservation">
-      <TopPanel color={'green'} name='Chefis' link='/profile'/>
+      <TopPanel color={'green'} name='Chefis' link='/menu'/>
       <div className={startReserv ? "self_unrender" : 'none'} onClick={unrenderBlackBox}></div>
       <button className='start_reserv' onClick={btnBrains}>RESERVE A TABLE</button>
       <div className={!startReserv ? 'black_box' : "active black_box"}>

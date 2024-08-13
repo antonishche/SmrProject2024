@@ -12,6 +12,8 @@ import Reserv from './../Pages/Reserv/Reserv';
 import Tables from '../Pages/Tables/Tables';
 import SubReserv from '../Pages/SubReserv/SubReserv';
 import Payment from '../Pages/Payment/Payment';
+import Menu from '../Pages/Menu/Menu';
+import Contacts from '../Pages/Contacts/Contacts';
 
 function App() {
 
@@ -27,6 +29,8 @@ function App() {
       <Route path='/reserv' Component={Reserv} />
       <Route path='/sub-reserv' Component={SubReserv} />
       <Route path='/payment' Component={Payment} />
+      <Route path='/menu' Component={Menu} />
+      <Route path='/contacts' Component={Contacts} />
       <Route path='*' Component={Error} />
     </Routes>
   )

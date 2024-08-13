@@ -69,7 +69,7 @@ export default function Payment() {
   }
 
   function pay() {
-    navigate('/')
+    navigate('/menu')
   }
 
   if (loading) {
