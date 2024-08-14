@@ -30,6 +30,7 @@ $white: #FFF0F0;
         justify-content: center;
         align-items: center;
         color: $white;
+        user-select: none;
     }
     .self_unrender{
         width: 100%;
@@ -54,6 +55,29 @@ $white: #FFF0F0;
         border-radius: 15px 15px 0 0;
         transition: 0.5s;
         transition-timing-function: ease;
+        .data_holder{
+            width: 86%;
+            display: flex;
+            justify-content: baseline;
+            align-items: center;
+            justify-content: space-between;
+            .del_inf{
+                width: 35px;
+                height: 35px;
+                border-radius: 10px;
+                border: none;
+                cursor: pointer;
+                background-color: #3C673C;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                p{
+                    font-size: 30px;
+                    transform: rotate(45deg);
+                }
+            }
+        }
         
         h2{
             font-size: 20px;

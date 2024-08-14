@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './TopPanel.scss'
 import { Link } from 'react-router-dom';
-import Burger from '../Burger/Burger';
 
 export default function TopPanel(props) {
 
@@ -22,7 +21,6 @@ export default function TopPanel(props) {
         <div className="logo_name_box">
             <Link className={green ? 'green' : 'go_back'} to={props.link}><p className='arr_transform'>{arrow}</p></Link>
             <h1 className='logo_name'>{props.name}</h1>
-            {bar && <Burger/>}
         </div>
     )
 }

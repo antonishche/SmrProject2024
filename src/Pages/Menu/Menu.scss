@@ -69,3 +69,93 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.463);
 }
+
+.absolut{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    transition: 0.5s;
+    display: flex;
+    justify-content: start;
+    z-index: 100;
+    .rightside_bar{
+        height: 100vh;
+        width: 20%;
+    }
+    .leftside_menu{
+        width: 80%;
+        height: 100%;
+        background-color: rgba(5, 5, 5, 0.67);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .links{
+            height: 80%;
+            width: 60%;
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            .smart_link{
+                text-decoration: none;
+                color: white;
+                cursor: pointer;
+                transition: 0.3s;
+                padding: 5px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 20px;
+                font-family: "Montserrat Alternates", sans-serif;
+                .go{
+                    color: rgba(255, 235, 205, 0);
+                    transition: 0.4s;
+                }
+                &:hover{
+                    .go{
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+.hidden{
+    left: -100%;
+}
+.onlook{
+    left: -0%;
+}
+
+.bar_menu{
+    width: 30px;
+    height: 27px;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    cursor: pointer;
+    .line{
+        width: 100%;
+        height: 3px;
+        border-radius: 2px;
+        background-color: #FFF0F0;
+        transition: 0.5s;
+        position: relative;
+    }
+    .line1{
+        transform: rotate(405deg);
+        top: 8px;
+    }
+    .line2{
+        background-color: #fff0f000;
+    }
+    .line3{
+        transform: rotate(-405deg);
+        bottom: 7px;
+    }
+}

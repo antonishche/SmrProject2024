@@ -39,7 +39,6 @@ export default function Tables() {
       }, [])
 
     function handleClick() {
-        console.log(ref.current);
         if (!ref.current) {
             setErr(true)
             return;
@@ -85,7 +84,7 @@ export default function Tables() {
                                         <div className="cher two"></div>
                                         <div className="cher three"></div>
                                         <div className="cher four"></div>
-                                        <input onChange={(e)=>{ref.current = e.target.value;console.log(ref.current)}} id={"radio-" + el} type="radio" name="radio" value={el} required/>
+                                        <input onChange={(e)=>{ref.current = e.target.value}} id={"radio-" + el} type="radio" name="radio" value={el} required/>
                                         <label htmlFor={"radio-" + el}>{el}</label>
                                     </div>
                                 )

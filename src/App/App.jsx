@@ -14,6 +14,7 @@ import SubReserv from '../Pages/SubReserv/SubReserv';
 import Payment from '../Pages/Payment/Payment';
 import Menu from '../Pages/Menu/Menu';
 import Contacts from '../Pages/Contacts/Contacts';
+import Description from '../Pages/Description/Description';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
       <Route path='/payment' Component={Payment} />
       <Route path='/menu' Component={Menu} />
       <Route path='/contacts' Component={Contacts} />
+      <Route path='/description' Component={Description} />
       <Route path='*' Component={Error} />
     </Routes>
   )

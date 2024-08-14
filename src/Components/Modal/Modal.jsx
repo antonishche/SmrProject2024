@@ -3,11 +3,10 @@ import './Modal.scss'
 
 export default function Modal(props) {
     const arrow = "<";
-    console.log(props);
     const elem = props.el
     const [count, setCount] = useState(1)
     const [cal, setCal] = useState(elem.kcal)
-    const [active, setActive] = useState('small')
+    const [active, setActive] = useState('medium')
     const [cost, setCost] = useState(elem.cost)
     const [activeDescr, setActiveDescr] = useState(false)
     function plus() {
