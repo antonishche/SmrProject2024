@@ -1,0 +1,13 @@
+.black_bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2D2A2A;
+    height: 10vh;
+    img{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+}

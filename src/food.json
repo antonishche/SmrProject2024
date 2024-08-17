@@ -1,80 +1,91 @@
 [
     {
+        "id": 1,
         "name": "PIZZA",
         "image": "pizza.jfif",
         "souce": [
             {
+                "id": 1,
                 "name": "Margherita",
                 "image": "pizza.jfif",
-                "descr": "Сыр моцарелла, спелые помидоры, листья базилика",
+                "descr": "Итальянские травы, томатный соус, томаты, моцарелла",
                 "kcal": "230",
-                "cost": "10",
+                "cost": "12",
                 "multiplier": "1.4",
                 "type": "pizza"
             },
             {
-                "name": "MARINARA",
+                "id": 2,
+                "name": "Marinara",
                 "image": "pizza1.jfif",
-                "descr": "bla bla...",
+                "descr": "Томатный соус, оливковое масло, орегано, чеснок",
                 "kcal": "230",
                 "cost": "10",
                 "multiplier": "1.4",
                 "type": "pizza"
             },
             {
-                "name": "CARBONARA",
+                "id": 3,
+                "name": "Carbonara",
                 "image": "pizza2.jfif",
-                "descr": "bla bla...",
+                "descr": "Бекон, сыры чеддер и пармезан, моцарелла, томаты, соус альфредо, красный лук, чеснок, итальянские травы",
                 "kcal": "230",
                 "cost": "10",
-                "multiplier": "1.4",
+                "multiplier": "1.5",
                 "type": "pizza"
             },
             {
-                "name": "ROMANA",
+                "id": 4,
+                "name": "Romana",
                 "image": "pizza3.jfif",
-                "descr": "bla bla...",
+                "descr": "Томатный соус, оливковое масло, моцарелла, базилик",
                 "kcal": "230",
-                "cost": "10",
-                "multiplier": "1.4",
+                "cost": "11",
+                "multiplier": "1.3",
                 "type": "pizza"
             },
             {
-                "name": "GREEK",
+                "id": 5,
+                "name": "Greek",
                 "image": "pizza4.jfif",
                 "descr": "bla bla...",
                 "kcal": "230",
-                "cost": "10",
-                "multiplier": "1.4",
+                "cost": "9",
+                "multiplier": "1.5",
                 "type": "pizza"
             },
             {
-                "name": "ANANAS",
-                "image": "ananas.jpg",
-                "descr": "bla bla...",
+                "id": 6,
+                "name": "Pepper",
+                "image": "pizza5.jfif",
+                "descr": "Томаты, моцарелла, листья базилика",
                 "kcal": "230",
-                "cost": "10",
-                "multiplier": "1.4",
+                "cost": "8",
+                "multiplier": "1.3",
                 "type": "pizza"
             }
         ]
     },
     {
+        "id": 2,
         "name": "RISOTO",
         "image": "risoto.jfif",
         "souce": []
     },
     {
+        "id": 3,
         "name": "PASTA",
         "image": "pasta.jfif",
         "souce": []
     },
     {
+        "id": 4,
         "name": "DESSERTS",
         "image": "desserts.jfif",
         "souce": []
     },
     {
+        "id": 5,
         "name": "COCTAILS",
         "image": "coctails.jfif",
         "souce": []

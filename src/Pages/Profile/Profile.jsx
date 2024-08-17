@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { getAuth, signOut, onAuthStateChanged, updateProfile, updateEmail } from 'firebase/auth';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TopPanel from '../../Components/TopPanel/TopPanel';
 import './Profile.scss'
-import { async } from '@firebase/util';
 import Loading from '../../Components/Loading/Loading';
 
 import { useAuth } from '../../hooks/use-auth';
@@ -105,7 +104,6 @@ export default function Profile() {
   function signOutUser(event) {
     event.preventDefault();
     signOut(auth).then(() => {
-      console.log('by');
     }).catch((error) => {
       console.log(error);
     });
@@ -114,7 +112,7 @@ export default function Profile() {
   return (
     <div className="container_profile">
       <div className="logo_name_box">
-        <Link className='go_back' to={'/menu'}><p className='arr_transform'>{arrow}</p></Link>
+        <div onClick={()=>navigate(-1)} className='go_back'><p className='arr_transform'>{arrow}</p></div>
         <img className='profile_image' onClick={handleClick} src={image} />
         <h1 className='del_img' onClick={() => setImage('')}>+</h1>
       </div>

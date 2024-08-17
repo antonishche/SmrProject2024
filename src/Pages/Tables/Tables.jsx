@@ -58,7 +58,7 @@ export default function Tables() {
 
     return (
         <div className="container">
-            <TopPanel link={'/reserv'} />
+            <TopPanel />
             <div className="cont_tables" onSubmit={subForm}>
                 <div className="table_columns">
                     <div className="two_col">
@@ -100,7 +100,7 @@ export default function Tables() {
                                         <div className="cher six"></div>
                                         <div className="cher seven"></div>
                                         <div className="cher eight"></div>
-                                        <input onChange={(e)=>{ref.current = e.target.value;console.log(ref.current)}} id={"radio-" + el} type="radio" name="radio" value={el} required/>
+                                        <input onChange={(e)=>{ref.current = e.target.value}} id={"radio-" + el} type="radio" name="radio" value={el} required/>
                                         <label htmlFor={"radio-" + el}><p>{el}</p></label>
                                     </div>
                                 )

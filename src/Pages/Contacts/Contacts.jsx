@@ -5,10 +5,10 @@ import TopPanel from '../../Components/TopPanel/TopPanel'
 export default function Contacts() {
   return (
     <div className="container">
-      <TopPanel link={'/menu'} name={'Chefis'} />
+      <TopPanel name={'Chefis'} />
       <div className="info_box">
         <div className="adres">
-          <p>Адрес г. Минск<br />Неминга 4</p>
+          <p>Адрес г. Минск<br />Немига 4</p>
         </div>
         <div className="contacts">
           <p>Контакты<br />+375 29 567 34 56<br />+375 44 578 09 67</p>

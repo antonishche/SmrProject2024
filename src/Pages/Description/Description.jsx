@@ -17,7 +17,7 @@ export default function Description() {
   return (
     <>
     {!modal && <div className="container_descr">
-      <TopPanel link={'/menu'} name={'Chefis'} />
+      <TopPanel name={'Chefis'} />
       <div className="boxes">
         {about.map((elem) => {
           return <div key={uuid()} className="box">

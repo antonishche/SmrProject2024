@@ -9,7 +9,6 @@ import { setDataAndPlace } from '../../store/slices/userSlice';
 
 export default function Reservation() {
 
-  const [loading, setLoading] = useState(false)
   const [guests, setGuests] = useState(1)
   const [selectedDateTime, setSelectedDateTime] = useState('');
   const [place, setPlace] = useState(false)
@@ -35,10 +34,6 @@ export default function Reservation() {
     navigate('/tables')
   }
 
-  if (loading) {
-    return <Loading />
-  }
-
   function clickPlaceInside() {
     setPlace('Внутри');
     window.scrollTo({
@@ -49,7 +44,7 @@ export default function Reservation() {
 
   return (
     <div className='container_reserv' style={{ paddingTop: '15px' }}>
-      <TopPanel link={'/'} name='' />
+      <TopPanel name='' />
       <div className="reserv_form">
         <div className="input_box">
           <p>Выбрать дату и время</p>

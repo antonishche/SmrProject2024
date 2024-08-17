@@ -50,7 +50,6 @@ export default function LogInForm() {
         setComplete(true);
         signInWithEmailAndPassword(auth, email, pass)
             .then(({ user }) => {
-                console.log(user);
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,

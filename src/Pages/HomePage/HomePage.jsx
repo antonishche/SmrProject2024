@@ -1,6 +1,6 @@
 import './HomePage.scss';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import TopPanel from '../../Components/TopPanel/TopPanel';
 import Loading from '../../Components/Loading/Loading';
@@ -16,6 +16,16 @@ export default function Reservation() {
   const [chooseWay, setChooseWay] = useState(false)
   const [data, setData] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  // console.log(localStorage.getItem('session'));
+  // 
+  // console.log(arr);
+  // arr.push('we are')
+  // localStorage.session = JSON.stringify(arr)
+
+  // var a = [];
+  // a.push(JSON.parse(localStorage.getItem('basketFood')));
+  // localStorage.setItem('session', JSON.stringify(a));
 
   useEffect(() => {
     setLoading(true)
@@ -71,7 +81,7 @@ export default function Reservation() {
   }
 
   if (loading) {
-    return <Loading/>
+    return <Loading />
   }
 
   return (
@@ -83,8 +93,8 @@ export default function Reservation() {
         {!chooseWay && <h2>No reservation yet</h2>}
         {!chooseWay && <button className='add_reserv' onClick={changeItems}>+</button>}
         {!chooseWay && <p>Предоплата столика <br /> 50 рублей</p>}
-        {chooseWay && <Link to='/reserv' className='cube_btn'>Бронирование столика</Link>}
-        {chooseWay && <Link to='/reserv' className='cube_btn'>Бронирование столика <br /> + меню</Link>}
+        {chooseWay && <div onClick={() => { sessionStorage.setItem('way', 'table'); navigate('/reserv') }} className='cube_btn'>Бронирование столика</div>}
+        {chooseWay && <div onClick={() => { sessionStorage.setItem('way', 'table_menu'); navigate('/reserv') }} className='cube_btn'>Бронирование столика <br /> + меню</div>}
       </div>}
       {data && <div className={!startReserv ? 'black_box' : "active black_box"}>
         <div className="data_holder">

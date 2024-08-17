@@ -6,6 +6,8 @@ import Loading from '../../Components/Loading/Loading';
 export default function Onboarding() {
 
   const [ready, setReady] = useState(false);
+  const arrBasketFood = [];
+  localStorage.setItem('basketFood', JSON.stringify(arrBasketFood));
 
   useEffect(() => { 
     document.body.style.overflow = 'hidden';

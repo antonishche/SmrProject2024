@@ -1,0 +1,85 @@
+.empty{
+    font-size: 25px;
+    margin-top: 40px;
+    padding: 5px;
+    font-family: "Montserrat Alternates", sans-serif;
+}
+.nav_helper{
+    width: 90%;
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+    button{
+        min-width: 140px;
+        width: 30%;
+        height: 40px;
+        font-size: 18px;
+        font-weight: 500;
+        border-radius: 10px;
+        border: none;
+    }
+    .clear_basket{
+        background-color: rgb(165, 65, 65);
+        color: white;
+    }
+    .buy_products{
+        background-color: #398e31;
+        color: white;
+    }
+}
+.basket_box{
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+    .cross{
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+    .basket_bag{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        border: 1px solid white;
+        border-radius: 10px;
+        padding: 15px 10px;
+        .img{
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+        }
+        .inf{
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            gap: 10px;
+            min-width: 150px;
+            .cost{
+                color: #F90000;
+            }
+        }
+        .counter{
+            display: flex;
+            height: 100%;
+            align-items: center;
+            gap: 10px;
+            button{
+                width: 40px;
+                height: 40px;
+                border: none;
+                border-radius: 8px;
+                background-color: #5F5D5D;
+                font-size: 25px;
+                color: white;
+            }
+        }
+    }
+}

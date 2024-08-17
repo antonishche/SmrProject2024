@@ -10,7 +10,7 @@ import { db } from '../../main';
 export default function Payment() {
   const auth = getAuth()
   const navigate = useNavigate()
-
+  const arrow = "<";
   const [cardNumber, setCardNumber] = useState('');
   const [ssvCode, setSsvCode] = useState('');
   const [name, setName] = useState('');
@@ -78,7 +78,7 @@ export default function Payment() {
 
   return (
     <div className='container'>
-      <TopPanel link='/sub-reserv' />
+      {addData && <TopPanel />}
       {addData && <div className="form_payment">
         <input onKeyDown={handleKeyDownCard} onChange={handleKeyDownCard} value={cardNumber} type="text" id='card' placeholder='Card number' />
         <div className="row">
@@ -90,9 +90,12 @@ export default function Payment() {
           <div className={!remPass ? "clever-box grey" : "clever-box blue"} onClick={() => setRemPass(!remPass)}>
             <div className={!remPass ? "circle" : "circle end"}></div>
           </div>
-          <p>save password</p>
+          <p>save card details</p>
         </div>
         <button onClick={subForm} disabled={cardNumber.length < 16 || ssvCode.length < 3 || !name} className="big_btn">Продолжить</button>
+      </div>}
+      {!addData && <div className="logo_name_box">
+        <div onClick={() => setAddData(!addData)} className='go_back'><p className='arr_transform'>{arrow}</p></div>
       </div>}
       {!addData && <div className="form_payment">
         <input type="text" value={50} readOnly />

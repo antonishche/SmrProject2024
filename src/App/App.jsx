@@ -1,3 +1,4 @@
+import { React, lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import './App.scss'
 import '../style/_template.scss'
@@ -5,7 +6,6 @@ import HomePage from '../Pages/HomePage/HomePage';
 import LogIn from './../Pages/LogIn/LogIn';
 import SignUp from './../Pages/SignUp/SignUp';
 import Onboarding from './../Pages/Onboarding/Onboarding';
-import Error from './../Pages/Error/Error';
 import PassReset from './../Pages/PassReset/PassReset';
 import Profile from './../Pages/Profile/Profile';
 import Reserv from './../Pages/Reserv/Reserv';
@@ -15,6 +15,16 @@ import Payment from '../Pages/Payment/Payment';
 import Menu from '../Pages/Menu/Menu';
 import Contacts from '../Pages/Contacts/Contacts';
 import Description from '../Pages/Description/Description';
+import Basket from '../Components/Basket/Basket';
+import Loading from '../Components/Loading/Loading';
+
+const Error = lazy(() => import('./../Pages/Error/Error'));
+
+const SuspenseError = () => (
+  <Suspense fallback={<Loading/>}>
+    <Error />
+  </Suspense>
+);
 
 function App() {
 
@@ -33,7 +43,8 @@ function App() {
       <Route path='/menu' Component={Menu} />
       <Route path='/contacts' Component={Contacts} />
       <Route path='/description' Component={Description} />
-      <Route path='*' Component={Error} />
+      <Route path='/basket' Component={Basket} />
+      <Route path='*' Component={SuspenseError} />
     </Routes>
   )
 }

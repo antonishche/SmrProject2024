@@ -45,7 +45,6 @@ export default function SignUpForm() {
     signInWithPopup(auth, provider)
       .then(() => {
         navigate('/')
-        console.log(auth.currentUser);
       }).catch((error) => {
         console.log(error);
       });

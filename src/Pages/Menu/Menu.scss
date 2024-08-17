@@ -7,10 +7,11 @@
     width: 100%;
     padding: 10px 40px 10px 60px;
     position: relative;
-    height: 70vh;
+    height: 72vh;
     overflow-y: scroll;
     box-sizing: content-box;
     gap: 10px;
+    font-family: "Montserrat Alternates", sans-serif;
     .no_res{
         font-size: 25px;
         margin-top: 40px;
@@ -30,6 +31,7 @@
         background-color: whitesmoke;
         user-select: none;
         h2{
+            min-width: 210px;
             width: 80%;
             padding: 10px;
             text-align: center;
@@ -37,7 +39,6 @@
             color: black;
             border-radius: 15px;
             font-weight: 600;
-            font-family: "Montserrat Alternates", sans-serif;
             text-transform: uppercase;
         }
 
@@ -51,14 +52,6 @@
     align-items: center;
     background-color: #2D2A2A;
     height: 20vh;
-}
-.black_bottom {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #2D2A2A;
-    height: 10vh;
 }
 
 .modal {

@@ -8,6 +8,12 @@
     justify-content: space-evenly;
     font-family: "Montserrat Alternates", sans-serif;
     gap: 20px;
+    hr{
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        border-top: 2px solid rgba(104, 104, 104, 0.536);
+    }
     h2{
         width: 100%;
         color: #FFF0F0;
