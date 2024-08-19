@@ -1,25 +1,62 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Payment.scss'
 import { useNavigate } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import TopPanel from './../../Components/TopPanel/TopPanel';
 import Loading from '../../Components/Loading/Loading';
-import { ref, set } from "firebase/database";
+import { ref, set, get } from "firebase/database";
 import { db } from '../../main';
 
 export default function Payment() {
   const auth = getAuth()
   const navigate = useNavigate()
   const arrow = "<";
+  const basketFood = JSON.parse(localStorage.getItem('basketFood'))
   const [cardNumber, setCardNumber] = useState('');
   const [ssvCode, setSsvCode] = useState('');
   const [name, setName] = useState('');
   const [remPass, setRemPass] = useState(false);
   const [loading, setLoading] = useState(false)
-
+  const [totalCost, setTotalCost] = useState()
   const [addData, setAddData] = useState(true)
 
   const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
+  useEffect(() => {
+    setLoading(true)
+    onAuthStateChanged(auth, (currentUser) => {
+      if (!currentUser) {
+        navigate('/onboarding')
+        return
+      } else {
+        if (basketFood.length) {
+          const total = basketFood.reduce((acc, el) => {
+            if (el.size === 'small') {
+              return acc + el.souce.cost * el.count
+            } else if (el.size === 'medium') {
+              return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.count)
+            } else if (el.size === 'big') {
+              return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.souce.multiplier * el.count)
+            }
+          }, 50)
+          setTotalCost(total)
+        }
+        get(ref(db, 'users/passwords/' + auth.currentUser.uid)).then((snapshot) => {
+          if (snapshot.exists() && snapshot.child !== null) {
+            setCardNumber(snapshot.val().card)
+            setName(snapshot.val().name)
+            setSsvCode(snapshot.val().ssv)
+            setLoading(false)
+          } else {
+            setLoading(false)
+          }
+        }).catch((error) => {
+          console.error(error);
+          setLoading(false)
+        });
+      }
+    })
+  }, [auth.currentUser])
 
   function handleKeyDownCard(event) {
     if (event.key == 'Backspace') {
@@ -69,7 +106,30 @@ export default function Payment() {
   }
 
   function pay() {
-    navigate('/menu')
+    setLoading(true)
+    const newArr = basketFood.map((el) => {
+      return ({
+        type: el.souce.type,
+        name: el.souce.name,
+        size: el.size,
+        count: el.count
+      })
+    })
+    console.table(newArr);
+    localStorage.setItem('basketFood', JSON.stringify([]))
+    if (newArr.length) {
+      set(ref(db, 'users/food/' + auth.currentUser.uid), {
+        newArr,
+      })
+        .then(() => {
+          navigate('/')
+          setLoading(false)
+        })
+        .catch((error) => {
+          console.log(error);
+          setLoading(false)
+        });
+    }
   }
 
   if (loading) {
@@ -98,7 +158,7 @@ export default function Payment() {
         <div onClick={() => setAddData(!addData)} className='go_back'><p className='arr_transform'>{arrow}</p></div>
       </div>}
       {!addData && <div className="form_payment">
-        <input type="text" value={50} readOnly />
+        <input type="text" value={totalCost + ' р'} readOnly />
         <button onClick={pay} className='big_btn'>Оплатить</button>
       </div>}
     </div>

@@ -62,18 +62,18 @@ $white: #FFF0F0;
             align-items: center;
             justify-content: space-between;
             .del_inf{
-                width: 35px;
-                height: 35px;
-                border-radius: 10px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
                 border: none;
                 cursor: pointer;
-                background-color: #3C673C;
                 color: white;
+                background-color: #3c673c96;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 p{
-                    font-size: 30px;
+                    font-size: 40px;
                     transform: rotate(45deg);
                 }
             }

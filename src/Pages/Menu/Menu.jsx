@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './Menu.scss'
 import { useNavigate } from 'react-router-dom'
 import food from '../../food.json'
-import { v4 as uuid } from 'uuid'
 import Modal from '../../Components/Modal/Modal'
 import BottomPanel from '../../Components/BottomPanel/BottomPanel'
 
@@ -53,7 +52,7 @@ export default function Menu() {
       {base && <div className="container_menu">
         {food.map(el => {
           return (
-            <div key={uuid()} onClick={() => { setSorce(el.souce); setBase(!base); setName(el.name) }} style={{ backgroundImage: 'url(' + el.image + ')' }} className="food_box">
+            <div key={el.id} onClick={() => { setSorce(el.souce); setBase(!base); setName(el.name) }} style={{ backgroundImage: 'url(' + el.image + ')' }} className="food_box">
               <h2>{el.name}</h2>
             </div>
           )
@@ -62,7 +61,7 @@ export default function Menu() {
       {!base && <div className="container_menu">
         {sorce.length !== 0 && sorce.map(el => {
           return (
-            <div key={uuid()} onClick={() => { setElement(el); setModal(true); }} style={{ backgroundImage: 'url(' + el.image + ')' }} className="food_box">
+            <div key={el.id} onClick={() => { setElement(el); setModal(true); }} style={{ backgroundImage: 'url(' + el.image + ')' }} className="food_box">
               <h2>{el.name}</h2>
             </div>
           )

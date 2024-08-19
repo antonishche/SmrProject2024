@@ -17,16 +17,6 @@ export default function Reservation() {
   const [data, setData] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  // console.log(localStorage.getItem('session'));
-  // 
-  // console.log(arr);
-  // arr.push('we are')
-  // localStorage.session = JSON.stringify(arr)
-
-  // var a = [];
-  // a.push(JSON.parse(localStorage.getItem('basketFood')));
-  // localStorage.setItem('session', JSON.stringify(a));
-
   useEffect(() => {
     setLoading(true)
     onAuthStateChanged(auth, (currentUser) => {
@@ -42,7 +32,7 @@ export default function Reservation() {
             setLoading(false)
           }
         }).catch((error) => {
-          console.error(error);
+          console.log(error);
           setLoading(false)
         });
       }
@@ -51,6 +41,9 @@ export default function Reservation() {
 
   function removeReserv() {
     setLoading(true)
+    set(ref(db, 'users/food/' + auth.currentUser.uid), {
+      food: null,
+    })
     set(ref(db, 'users/reservation/' + auth.currentUser.uid), {
       place: null,
       data: null,

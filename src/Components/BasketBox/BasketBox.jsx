@@ -16,46 +16,49 @@ export default function BasketBox(props) {
             return
         }
     }, [])
-    function minus() {
-        if (count == 1) {
-            const newBasket = props.basket.filter((n) => { return n !== props.el })
-            props.set(newBasket)
-            localStorage.setItem('basketFood', JSON.stringify(newBasket))
-            return
-        }
-        basket.forEach((elem) => {
-            if (elem.souce.name === props.el.souce.name && elem.souce.type === props.el.souce.type && elem.size === props.el.size) {
-                elem.count = elem.count - 1;
-            }
-        })
-        localStorage.setItem('basketFood', JSON.stringify(basket))
-        setCount(count + 1)
-        setCount(count - 1)
-    }
-    function plus() {
-        if (count == 5) {
-            return
-        }
-        basket.forEach((elem) => {
-            if (elem.souce.name === props.el.souce.name && elem.souce.type === props.el.souce.type && elem.size === props.el.size) {
-                elem.count = elem.count + 1;
-            }
-        })
-        localStorage.setItem('basketFood', JSON.stringify(basket))
-        setCount(count + 1)
-    }
+    // function minus() {
+    //     if (count == 1) {
+    //         const newBasket = props.basket.filter((n) => { return n !== props.el })
+    //         props.set(newBasket)
+    //         localStorage.setItem('basketFood', JSON.stringify(newBasket))
+    //         return
+    //     }
+    //     basket.forEach((elem) => {
+    //         if (elem.souce.name === props.el.souce.name && elem.souce.type === props.el.souce.type && elem.size === props.el.size) {
+    //             elem.count = elem.count - 1;
+    //         }
+    //     })
+    //     localStorage.setItem('basketFood', JSON.stringify(basket))
+    //     setCount(count - 1)
+    // }
+    // function plus() {
+    //     if (count == 5) {
+    //         return
+    //     }
+    //     basket.forEach((elem) => {
+    //         if (elem.souce.name === props.el.souce.name && elem.souce.type === props.el.souce.type && elem.size === props.el.size) {
+    //             elem.count = elem.count + 1;
+    //         }
+    //     })
+    //     localStorage.setItem('basketFood', JSON.stringify(basket))
+    //     setCount(count + 1)
+    // }
     return <div className="basket_box">
         <div className="basket_bag">
             <div className='img' style={{ backgroundImage: 'url(' + props.el.souce.image + ')' }}></div>
             <div className="inf">
                 <p>{props.el.souce.type + ' ' + props.el.souce.name}</p>
-                <p className='cost'>{cost * count + ' р'}</p>
-                <p>{props.el.size}</p>
+                <div className="row">
+                    <p>{props.el.size}</p>
+                    <p className='cost'>{cost * count + ' р'}</p>
+                </div>
             </div>
             <div className="counter">
-                <button onClick={minus}>-</button>
+                <button onClick={()=>{props.minus(count, props.el);setCount(count-1)}}>-</button>
                 <p>{count}</p>
-                <button onClick={plus}>+</button>
+                <button onClick={()=>{props.plus(count, props.el);if (count == 5) {
+                    return
+                } setCount(count+1) }}>+</button>
             </div>
         </div>
     </div>

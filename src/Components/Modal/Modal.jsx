@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { ref, get } from "firebase/database";
+import { db } from '../../main';
+import { getAuth } from 'firebase/auth';
 import './Modal.scss'
+import Loading from '../Loading/Loading';
 
 export default function Modal(props) {
     const arrow = "<";
     const elem = props.el
     const navigate = useNavigate()
     const basket = JSON.parse(localStorage.getItem('basketFood'))
+    const auth = getAuth()
+    const user = auth.currentUser
 
     const [count, setCount] = useState(1)
     const [cal, setCal] = useState(elem.kcal)
@@ -14,8 +20,11 @@ export default function Modal(props) {
     const [cost, setCost] = useState(elem.cost)
     const [activeDescr, setActiveDescr] = useState(false)
     const [bought, setBought] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [reserved, setReserved] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
+        setLoading(true)
         if (basket.length) {
             basket.forEach(element => {
                 if (element.souce.name == elem.name && element.souce.type == elem.type && element.size == active) {
@@ -23,7 +32,16 @@ export default function Modal(props) {
                 }
             });
         }
-    },[])
+        get(ref(db, 'users/food/' + user.uid)).then((snapshot) => {
+            if (snapshot.exists() && snapshot.child !== null) {
+                setReserved(true)
+            }
+            setLoading(false)
+        }).catch((error) => {
+            console.log(error);
+            setLoading(false)
+        });
+    }, [user])
 
     function basketLogic() {
         const arrPush = {
@@ -78,6 +96,11 @@ export default function Modal(props) {
             }
         });
     }
+
+    if (loading) {
+        return <Loading />
+    }
+
     return (
         <div className='modal'>
             <div className="img" style={{ backgroundImage: 'url(' + elem.image + ')' }}></div>
@@ -88,27 +111,28 @@ export default function Modal(props) {
                 <div className="type">{elem.type}</div>
                 <div className="name">{elem.name}</div>
             </div>
-            <div className="total">
+            {!reserved && <div className="total">
                 {!bought && <div className="counter">
                     <button className='count_btn' onClick={minus}>-</button>
                     <div className='number'>{count}</div>
                     <button className='count_btn' onClick={plus}>+</button>
                 </div>}
                 {!bought && <div className="cost">{cost * count + ' р.'}</div>}
-            </div>
-            <div className="total">
+            </div>}
+            {!reserved && <div className="total">
                 {!bought && <p>Калории</p>}
                 {!bought && <div className="cal">{cal * count + ' kcal'}</div>}
-            </div>
-            <div className="total">
+            </div>}
+            {!reserved && <div className="total">
                 <button onClick={() => { setActive('small'); setCost(elem.cost); setCal(elem.kcal); small() }} className={active == 'small' ? "active size" : "passive size"}>small</button>
                 <button onClick={() => { setActive('medium'); setCost(Math.trunc(elem.cost * elem.multiplier)); setCal(Math.trunc(elem.kcal * elem.multiplier)); medium() }} className={active == 'medium' ? "active size" : "passive size"}>medium</button>
                 <button onClick={() => { setActive('big'); setCost(Math.trunc(elem.cost * elem.multiplier * elem.multiplier)); setCal(Math.trunc(elem.kcal * elem.multiplier * elem.multiplier)); big() }} className={active == 'big' ? "active size" : "passive size"}>big</button>
-            </div>
-            <div className="total">
+            </div>}
+            <div className="total" style={{flexWrap: 'wrap'}}>
                 <div className="descr" onClick={() => setActiveDescr(!activeDescr)}>Состав</div>
-                {!bought && <img className='basket' onClick={basketLogic} src={'basket.png'} alt="" />}
-                {bought && <h2 onClick={()=>navigate('/basket')}>В корзине</h2>}
+                {!bought && !reserved && <img className='basket' onClick={basketLogic} src={'basket.png'} alt="" />}
+                {bought && !reserved && <h2 className='in_basket' onClick={() => navigate('/basket')}>В корзине</h2>}
+                {reserved && <h2>Заказ уже <br />есть</h2>}
             </div>
             {activeDescr && <div className="modal_descr">
                 <div className="text">

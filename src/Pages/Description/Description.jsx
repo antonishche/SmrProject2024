@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './Description.scss'
 import TopPanel from '../../Components/TopPanel/TopPanel'
 import about from '../../aboutUs.json'
-import { v4 as uuid } from 'uuid'
 
 export default function Description() {
   const [modal, setModal] = useState(false)
@@ -20,7 +19,7 @@ export default function Description() {
       <TopPanel name={'Chefis'} />
       <div className="boxes">
         {about.map((elem) => {
-          return <div key={uuid()} className="box">
+          return <div key={elem.id} className="box">
             <h2>{elem.name}</h2>
             <img className={elem.imageBase ? 'img' : 'none'} src={elem.imageBase} alt="" />
             <div className={elem.imageProfile ? "profile-descr" : 'none'}>
