@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import './Reserv.scss'
 import { useNavigate } from 'react-router-dom'
 import TopPanel from '../../Components/TopPanel/TopPanel'
-import Loading from '../../Components/Loading/Loading'
 import { useDispatch } from 'react-redux'
 import { setDataAndPlace } from '../../store/slices/userSlice';
 

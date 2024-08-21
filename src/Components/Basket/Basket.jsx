@@ -25,10 +25,8 @@ export default function Basket() {
     get(ref(db, 'users/reservation/' + auth.currentUser.uid)).then((snapshot) => {
       if (snapshot.exists() && snapshot.child !== null) {
         navigate('/payment')
-        setLoading(false)
       } else {
         setNotReservated(true)
-        setLoading(false)
       }
     }).catch((error) => {
       console.error(error);
@@ -38,9 +36,6 @@ export default function Basket() {
 
   function minus(count, el) {
     if (count == 1) {
-        const newBasket = basketFood.filter((n) => { return n !== el })
-        setStateBasket(newBasket)
-        localStorage.setItem('basketFood', JSON.stringify(newBasket))
         return
     }
     basketFood.forEach((elem) => {

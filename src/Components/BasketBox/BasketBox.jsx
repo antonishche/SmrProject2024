@@ -54,7 +54,12 @@ export default function BasketBox(props) {
                 </div>
             </div>
             <div className="counter">
-                <button onClick={()=>{props.minus(count, props.el);setCount(count-1)}}>-</button>
+                <button onClick={()=>{props.minus(count, props.el);if (count == 1) {
+                    const newBasket = props.basket.filter((n) => { return n !== props.el })
+                    props.set(newBasket)
+                    localStorage.setItem('basketFood', JSON.stringify(newBasket))
+                    return
+                } setCount(count-1)}}>-</button>
                 <p>{count}</p>
                 <button onClick={()=>{props.plus(count, props.el);if (count == 5) {
                     return

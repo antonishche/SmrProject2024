@@ -155,7 +155,7 @@ export default function SignUpForm() {
         </Link>
       </div>}
       {registrated && <h2>Успешная регистрация</h2>}
-      {registrated && <button onClick={() => navigate('/')} className='big_btn'>Продолжить</button>}
+      {registrated && <button onClick={() => navigate('/menu')} className='big_btn'>Продолжить</button>}
     </div>
   )
 }

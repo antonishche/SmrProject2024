@@ -35,6 +35,10 @@ export default function Menu() {
               <p>Контакты</p>
               <p className='go'>→</p>
             </div>
+            <div onClick={() => navigate('/pay')} className='smart_link' >
+              <p>Способ оплаты</p>
+              <p className='go'>→</p>
+            </div>
           </div>
         </div>
         <div className="rightside_bar" onClick={() => setActive(!active)}></div>

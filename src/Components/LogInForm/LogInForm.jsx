@@ -55,7 +55,7 @@ export default function LogInForm() {
                     id: user.uid,
                     token: user.accessToken,
                 }))
-                navigate('/')
+                navigate('/menu')
                 setComplete(false);
             }).catch((error) => {
                 console.log(error);

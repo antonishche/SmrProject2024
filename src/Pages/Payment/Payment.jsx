@@ -17,13 +17,13 @@ export default function Payment() {
   const [name, setName] = useState('');
   const [remPass, setRemPass] = useState(false);
   const [loading, setLoading] = useState(false)
-  const [totalCost, setTotalCost] = useState()
+  const [totalCost, setTotalCost] = useState(50)
   const [addData, setAddData] = useState(true)
 
   const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
   useEffect(() => {
-    setLoading(true)
+    // setLoading(true)
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         navigate('/onboarding')
@@ -38,8 +38,8 @@ export default function Payment() {
             } else if (el.size === 'big') {
               return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.souce.multiplier * el.count)
             }
-          }, 50)
-          setTotalCost(total)
+          }, 0)
+          setTotalCost(totalCost + total)
         }
         get(ref(db, 'users/passwords/' + auth.currentUser.uid)).then((snapshot) => {
           if (snapshot.exists() && snapshot.child !== null) {
@@ -122,14 +122,15 @@ export default function Payment() {
         newArr,
       })
         .then(() => {
-          navigate('/')
-          setLoading(false)
+          
         })
         .catch((error) => {
           console.log(error);
           setLoading(false)
         });
     }
+    navigate('/')
+    setLoading(false)
   }
 
   if (loading) {

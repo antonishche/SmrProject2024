@@ -17,6 +17,9 @@ import Contacts from '../Pages/Contacts/Contacts';
 import Description from '../Pages/Description/Description';
 import Basket from '../Components/Basket/Basket';
 import Loading from '../Components/Loading/Loading';
+import Catering from '../Pages/Catering/Catering';
+import Cater from '../Pages/Cater/Cater'
+import SubCater from '../Pages/SubCater/SubCater';
 
 const Error = lazy(() => import('./../Pages/Error/Error'));
 
@@ -44,6 +47,9 @@ function App() {
       <Route path='/contacts' Component={Contacts} />
       <Route path='/description' Component={Description} />
       <Route path='/basket' Component={Basket} />
+      <Route path='/catering' Component={Catering} />
+      <Route path='/cater' Component={Cater} />
+      <Route path='sub-cater' Component={SubCater} />
       <Route path='*' Component={SuspenseError} />
     </Routes>
   )
