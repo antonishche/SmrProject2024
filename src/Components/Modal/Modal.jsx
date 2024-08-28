@@ -111,28 +111,27 @@ export default function Modal(props) {
                 <div className="type">{elem.type}</div>
                 <div className="name">{elem.name}</div>
             </div>
-            {!reserved && <div className="total">
+            <div className="total">
                 {!bought && <div className="counter">
                     <button className='count_btn' onClick={minus}>-</button>
                     <div className='number'>{count}</div>
                     <button className='count_btn' onClick={plus}>+</button>
                 </div>}
                 {!bought && <div className="cost">{cost * count + ' р.'}</div>}
-            </div>}
-            {!reserved && <div className="total">
+            </div>
+            <div className="total">
                 {!bought && <p>Калории</p>}
                 {!bought && <div className="cal">{cal * count + ' kcal'}</div>}
-            </div>}
-            {!reserved && <div className="total">
+            </div>
+            <div className="total">
                 <button onClick={() => { setActive('small'); setCost(elem.cost); setCal(elem.kcal); small() }} className={active == 'small' ? "active size" : "passive size"}>small</button>
                 <button onClick={() => { setActive('medium'); setCost(Math.trunc(elem.cost * elem.multiplier)); setCal(Math.trunc(elem.kcal * elem.multiplier)); medium() }} className={active == 'medium' ? "active size" : "passive size"}>medium</button>
                 <button onClick={() => { setActive('big'); setCost(Math.trunc(elem.cost * elem.multiplier * elem.multiplier)); setCal(Math.trunc(elem.kcal * elem.multiplier * elem.multiplier)); big() }} className={active == 'big' ? "active size" : "passive size"}>big</button>
-            </div>}
+            </div>
             <div className="total" style={{flexWrap: 'wrap'}}>
                 <div className="descr" onClick={() => setActiveDescr(!activeDescr)}>Состав</div>
-                {!bought && !reserved && <img className='basket' onClick={basketLogic} src={'basket.png'} alt="" />}
-                {bought && !reserved && <h2 className='in_basket' onClick={() => navigate('/basket')}>В корзине</h2>}
-                {reserved && <h2>Заказ уже <br />есть</h2>}
+                {!bought && <img className='basket' onClick={basketLogic} src={'basket.png'} alt="" />}
+                {bought && <h2 className='in_basket' onClick={() => navigate('/basket')}>В корзине</h2>}
             </div>
             {activeDescr && <div className="modal_descr">
                 <div className="text">

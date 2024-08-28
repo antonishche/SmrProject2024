@@ -23,7 +23,7 @@ export default function Payment() {
   const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
   useEffect(() => {
-    // setLoading(true)
+    setLoading(true)
     onAuthStateChanged(auth, (currentUser) => {
       if (!currentUser) {
         navigate('/onboarding')
@@ -46,16 +46,13 @@ export default function Payment() {
             setCardNumber(snapshot.val().card)
             setName(snapshot.val().name)
             setSsvCode(snapshot.val().ssv)
-            setLoading(false)
-          } else {
-            setLoading(false)
           }
         }).catch((error) => {
           console.error(error);
-          setLoading(false)
         });
       }
     })
+    setLoading(false)
   }, [auth.currentUser])
 
   function handleKeyDownCard(event) {
@@ -116,10 +113,10 @@ export default function Payment() {
       })
     })
     console.table(newArr);
-    localStorage.setItem('basketFood', JSON.stringify([]))
+    // localStorage.setItem('basketFood', JSON.stringify([]))
     if (newArr.length) {
       set(ref(db, 'users/food/' + auth.currentUser.uid), {
-        newArr,
+        basketFood,
       })
         .then(() => {
           

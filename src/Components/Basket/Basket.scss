@@ -84,7 +84,7 @@
                 height: 40px;
                 border: none;
                 border-radius: 8px;
-                background-color: #5F5D5D;
+                background-color: #9c9c9c8c;
                 font-size: 25px;
                 color: white;
             }
@@ -145,10 +145,10 @@
         width: 100%;
         min-width: 300px;
         .basket_bag{
+            font-size: 14px;
             .counter{
                 transform: scale(0.8);
             }
-            font-size: 14px;
             .inf{
                 width: min-content;
                 min-width: none;

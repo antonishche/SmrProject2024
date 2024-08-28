@@ -16,6 +16,7 @@ export default function Reservation() {
   const [chooseWay, setChooseWay] = useState(false)
   const [data, setData] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [seeMenu,setSeeMenu] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -27,20 +28,26 @@ export default function Reservation() {
         get(ref(db, 'users/reservation/' + auth.currentUser.uid)).then((snapshot) => {
           if (snapshot.exists() && snapshot.child !== null) {
             setData(snapshot.val());
-            setLoading(false)
-          } else {
-            setLoading(false)
           }
         }).catch((error) => {
           console.log(error);
-          setLoading(false)
+        });
+        get(ref(db, 'users/food/' + auth.currentUser.uid)).then((snapshot) => {
+          if (snapshot.exists() && snapshot.child !== null) {
+            setSeeMenu(snapshot.val())
+            localStorage.setItem('basketFood', JSON.stringify(snapshot.val().basketFood))
+          }
+        }).catch((error) => {
+          console.error(error);
         });
       }
     })
-  }, [auth.currentUser])
+    setLoading(false)
+  }, [])
 
   function removeReserv() {
     setLoading(true)
+    localStorage.setItem('basketFood', JSON.stringify([]))
     set(ref(db, 'users/food/' + auth.currentUser.uid), {
       food: null,
     })
@@ -77,7 +84,7 @@ export default function Reservation() {
     return <Loading />
   }
 
-  return (
+  return <div>
     <div className="container_reservation">
       <TopPanel color={'green'} name='Chefis' link='/menu' />
       <div className={startReserv ? "self_unrender" : 'none'} onClick={unrenderBlackBox}></div>
@@ -92,11 +99,11 @@ export default function Reservation() {
       {data && <div className={!startReserv ? 'black_box' : "active black_box"}>
         <div className="data_holder">
           <h2>Reservation is ready</h2>
-          <button className='del_inf' onClick={removeReserv}><p>+</p></button>
+          <img src="trash.png" style={{cursor: 'pointer',color: 'white',width: '30px',height: '30px'}} alt="" onClick={removeReserv}/>
         </div>
         <div className="data_holder">
           <p>Дата:</p>
-          <p>{data.data}</p>
+          <p>{data.data.slice(0,10) + ', ' + data.data.slice(11)}</p>
         </div>
         <div className="data_holder">
           <p>Место:</p>
@@ -110,7 +117,8 @@ export default function Reservation() {
           <p>Гости:</p>
           <p>{data.guests}</p>
         </div>
+        {seeMenu && <button className='seeMenu' onClick={()=>navigate('/basket')}>→ Заказ ←</button>}
       </div>}
     </div>
-  )
+  </div>
 }

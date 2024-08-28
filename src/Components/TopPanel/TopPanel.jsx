@@ -13,7 +13,7 @@ export default function TopPanel(props) {
         if (props.color === 'green') {
             setGreen(true)
         }
-        if (props.link == '/onboarding' || props.link == '/menu') {
+        if (props.link) {
             setLink(true)
         }
     }, [])

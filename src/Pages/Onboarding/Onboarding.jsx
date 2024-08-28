@@ -7,6 +7,7 @@ export default function Onboarding() {
 
   const [ready, setReady] = useState(false);
   const arrBasketFood = [];
+  sessionStorage.setItem('cater', JSON.stringify({}))
   localStorage.setItem('basketFood', JSON.stringify(arrBasketFood));
 
   useEffect(() => { 

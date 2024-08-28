@@ -43,7 +43,7 @@ export default function Reservation() {
 
   return (
     <div className='container_reserv' style={{ paddingTop: '15px' }}>
-      <TopPanel name='' />
+      <TopPanel link={'/'} name='' />
       <div className="reserv_form">
         <div className="input_box">
           <p>Выбрать дату и время</p>
@@ -62,10 +62,10 @@ export default function Reservation() {
             </div>
             <p className='num'>{guests}</p>
             <div className="box">
-              <img onClick={() => setGuests(guests + 1)} className={guests == 10 ? 'none' : "change_num"} src="plus.png" alt="" />
+              <img onClick={() => setGuests(guests + 1)} className={guests == 6 ? 'none' : "change_num"} src="plus.png" alt="" />
             </div>
           </div>
-          {guests == 10 && <p style={{ color: '#F90000' }}>Это максимум</p>}
+          {guests == 6 && <p style={{ color: '#F90000' }}>Это максимум</p>}
         </div>
         <div className="input_box">
           <p>Место трапизы?</p>

@@ -39,22 +39,35 @@ $white: #FFF0F0;
         top: 0;
     }
     .active{
-        transform: translateY(-50vh);
+        transform: translateY(-70vh);
     }
     .black_box{
         width: 100%;
-        height: 50vh;
         position: absolute;
-        bottom: -50vh;
+        bottom: -70vh;
         background-color: rgb(25, 25, 25);
         font-family: "Montserrat Alternates", sans-serif;
         display: flex;
         align-items: center;
         flex-direction: column;
+        gap: 25px;
+        padding: 20px 0 30px 0;
         justify-content: space-evenly;
         border-radius: 15px 15px 0 0;
-        transition: 0.5s;
-        transition-timing-function: ease;
+        transition: 0.7s;
+        transition-timing-function: ease-in-out;
+        .seeMenu{
+            width: 140px;
+            padding: 5px 0;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: #FFF0F0;
+            cursor: pointer;
+            margin: 0 auto;
+        }
         .data_holder{
             width: 86%;
             display: flex;
