@@ -68,7 +68,7 @@ export default function SubCater() {
         </div>}
         {!onProcess && <div className="logo_name_box">
             <div onClick={() => setOnProcess(!onProcess)} className='go_back'><p className='arr_transform'>{arrow}</p></div>
-            <div className='cros' onClick={()=>navigate('/menu')}>+</div>
+            <div className='cros' onClick={()=>navigate('/catering')}>+</div>
         </div>}
         {!onProcess && <div className='info_reserv'>
             <h1 style={{fontSize: '25px', margin: '0 auto', textAlign: 'center'}}>Спасибо за<br /> размещние заказа</h1>

@@ -114,6 +114,71 @@ $white: #FFF0F0;
     }
 }
 
+.modal-home{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+    top:  0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000093;
+    font-family: "Montserrat Alternates", sans-serif;
+    backdrop-filter: blur(5px);
+    .mini_cont{
+        width: 50%;
+        border-radius: 20px;
+        min-width: 300px;
+        padding: 0 10px 40px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #3C673C;
+        color: #FFF0F0;
+        .logo_name_box{
+            .go_back{
+                .arr_transform{
+                    font-size: 30px;
+                    font-family: serif;
+                }
+            }
+        }
+        p{
+            margin-bottom: 40px;
+            font-size: 22px;
+            text-align: center;
+        }
+        .row{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            button{
+                min-width: 110px;
+                width: 30%;
+                height: 40px;
+                font-size: 20px;
+                font-weight: 500;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: 0.5s;
+            }
+            .btn1{
+                background-color: rgb(141, 32, 32);
+                color: #FFF0F0;
+                &:hover{
+                    background-color: rgb(161, 55, 55);
+                }
+            }
+            .btn2{
+                background-color: rgb(174, 174, 174);
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 500px){
     .container_reservation{
       .start_reserv{

@@ -19,6 +19,7 @@ export default function Payment() {
   const [loading, setLoading] = useState(false)
   const [totalCost, setTotalCost] = useState(50)
   const [addData, setAddData] = useState(true)
+  const [modal, setModal] = useState(false)
 
   const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
@@ -30,16 +31,7 @@ export default function Payment() {
         return
       } else {
         if (basketFood.length) {
-          const total = basketFood.reduce((acc, el) => {
-            if (el.size === 'small') {
-              return acc + el.souce.cost * el.count
-            } else if (el.size === 'medium') {
-              return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.count)
-            } else if (el.size === 'big') {
-              return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.souce.multiplier * el.count)
-            }
-          }, 0)
-          setTotalCost(totalCost + total)
+          setModal(!modal)
         }
         get(ref(db, 'users/passwords/' + auth.currentUser.uid)).then((snapshot) => {
           if (snapshot.exists() && snapshot.child !== null) {
@@ -102,6 +94,19 @@ export default function Payment() {
     setAddData(false)
   }
 
+  function countTotal() {
+    const total = basketFood.reduce((acc, el) => {
+      if (el.size === 'small') {
+        return acc + el.souce.cost * el.count
+      } else if (el.size === 'medium') {
+        return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.count)
+      } else if (el.size === 'big') {
+        return acc + Math.trunc(el.souce.cost * el.souce.multiplier * el.souce.multiplier * el.count)
+      }
+    }, 0)
+    setTotalCost(totalCost + total)
+  }
+
   function pay() {
     setLoading(true)
     const newArr = basketFood.map((el) => {
@@ -136,6 +141,18 @@ export default function Payment() {
 
   return (
     <div className='container'>
+      {modal && <div className="modal-home">
+        <div className="mini_cont">
+          <div className="logo_name_box">
+          <div className='go_back' onClick={()=>setModal(!modal)}><p className='arr_transform'>{'<'}</p></div>
+          </div>
+          <p>Желаете оплатить блюда сейчас?</p>
+          <div className="row">
+            <button className="btn1" onClick={()=>setModal(!modal)}>На месте</button>
+            <button className="btn2" onClick={()=>{setModal(!modal);countTotal()}}>Сейчас</button>
+          </div>
+        </div>
+      </div>}
       {addData && <TopPanel />}
       {addData && <div className="form_payment">
         <input onKeyDown={handleKeyDownCard} onChange={handleKeyDownCard} value={cardNumber} type="text" id='card' placeholder='Card number' />

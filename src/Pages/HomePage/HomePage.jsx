@@ -17,6 +17,7 @@ export default function Reservation() {
   const [data, setData] = useState(false)
   const [loading, setLoading] = useState(false)
   const [seeMenu,setSeeMenu] = useState(false)
+  const [modal, setModal] = useState(false)
 
   useEffect(() => {
     setLoading(true)
@@ -47,6 +48,7 @@ export default function Reservation() {
 
   function removeReserv() {
     setLoading(true)
+    setModal(!modal)
     localStorage.setItem('basketFood', JSON.stringify([]))
     set(ref(db, 'users/food/' + auth.currentUser.uid), {
       food: null,
@@ -86,6 +88,18 @@ export default function Reservation() {
 
   return <div>
     <div className="container_reservation">
+      {modal && <div className="modal-home">
+        <div className="mini_cont">
+          <div className="logo_name_box">
+          <div className='go_back' onClick={()=>setModal(!modal)}><p className='arr_transform'>{'<'}</p></div>
+          </div>
+          <p>Удалить заказ?</p>
+          <div className="row">
+            <button className="btn1" onClick={removeReserv}>Удалить</button>
+            <button className="btn2" onClick={()=>setModal(!modal)}>Отмена</button>
+          </div>
+        </div>
+      </div>}
       <TopPanel color={'green'} name='Chefis' link='/menu' />
       <div className={startReserv ? "self_unrender" : 'none'} onClick={unrenderBlackBox}></div>
       <button className='start_reserv' onClick={btnBrains}>RESERVE A TABLE</button>
@@ -93,13 +107,13 @@ export default function Reservation() {
         {!chooseWay && <h2>No reservation yet</h2>}
         {!chooseWay && <button className='add_reserv' onClick={changeItems}>+</button>}
         {!chooseWay && <p>Предоплата столика <br /> 50 рублей</p>}
-        {chooseWay && <div onClick={() => { sessionStorage.setItem('way', 'table'); navigate('/reserv') }} className='cube_btn'>Бронирование столика</div>}
+        {chooseWay && <div onClick={() => { sessionStorage.setItem('way', 'table'); navigate('/reserv') }} style={{marginTop: '20px'}} className='cube_btn'>Бронирование столика</div>}
         {chooseWay && <div onClick={() => { sessionStorage.setItem('way', 'table_menu'); navigate('/reserv') }} className='cube_btn'>Бронирование столика <br /> + меню</div>}
       </div>}
       {data && <div className={!startReserv ? 'black_box' : "active black_box"}>
         <div className="data_holder">
           <h2>Reservation is ready</h2>
-          <img src="trash.png" style={{cursor: 'pointer',color: 'white',width: '30px',height: '30px'}} alt="" onClick={removeReserv}/>
+          <img src="trash.png" style={{cursor: 'pointer',color: 'white',width: '30px',height: '30px'}} alt="" onClick={()=>setModal(!modal)}/>
         </div>
         <div className="data_holder">
           <p>Дата:</p>
