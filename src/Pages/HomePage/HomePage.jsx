@@ -61,12 +61,11 @@ export default function Reservation() {
     })
       .then(() => {
         setData(false)
-        setLoading(false)
       })
       .catch((error) => {
         console.log(error);
-        setLoading(false)
       });
+      setTimeout(setLoading(false), 1000)
   }
 
   function changeItems() {

@@ -21,7 +21,7 @@ export default function Payment() {
   const [addData, setAddData] = useState(true)
   const [modal, setModal] = useState(false)
 
-  const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  const arrKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8,9]
 
   useEffect(() => {
     setLoading(true)
@@ -37,7 +37,7 @@ export default function Payment() {
           if (snapshot.exists() && snapshot.child !== null) {
             setCardNumber(snapshot.val().card)
             setName(snapshot.val().name)
-            setSsvCode(snapshot.val().ssv)
+            setSsvCode(snapshot.val().ssv+'')
           }
         }).catch((error) => {
           console.error(error);
@@ -47,31 +47,17 @@ export default function Payment() {
     setLoading(false)
   }, [auth.currentUser])
 
-  function handleKeyDownCard(event) {
-    if (event.key == 'Backspace') {
-      if (cardNumber[cardNumber.length - 2] == ' ') {
-        setCardNumber(cardNumber.slice(0, -2))
-        return
-      }
-      setCardNumber(cardNumber.slice(0, -1))
+  function handleKeyDownCode(e) {
+    if (e.key == 'Backspace') {
+      setSsvCode('')
       return
-    } else if (cardNumber.length == 19 || !arrKeys.includes(event.key)) {
+    } else if (ssvCode.length == 3) {
       return
-    } else if (cardNumber.replaceAll(" ", '').length % 4 == 0 && cardNumber.length !== 0) {
-      setCardNumber(cardNumber + ' ' + event.key)
+    }else if (ssvCode.length > 3) {
+      ssvCode.slice(0,2)
       return
     }
-    setCardNumber(cardNumber + event.key)
-  };
-
-  function handleKeyDownCode(event) {
-    if (event.key == 'Backspace') {
-      setSsvCode(ssvCode.slice(0, -1))
-      return
-    } else if (ssvCode.length == 3 || !arrKeys.includes(event.key)) {
-      return
-    }
-    setSsvCode(ssvCode + event.key)
+    setSsvCode(e.target.value)
   };
 
   function subForm() {
@@ -118,7 +104,6 @@ export default function Payment() {
       })
     })
     console.table(newArr);
-    // localStorage.setItem('basketFood', JSON.stringify([]))
     if (newArr.length) {
       set(ref(db, 'users/food/' + auth.currentUser.uid), {
         basketFood,
@@ -155,10 +140,14 @@ export default function Payment() {
       </div>}
       {addData && <TopPanel />}
       {addData && <div className="form_payment">
-        <input onKeyDown={handleKeyDownCard} onChange={handleKeyDownCard} value={cardNumber} type="text" id='card' placeholder='Card number' />
+        <input onChange={(e)=>{if (cardNumber.length !== 16) {
+          setCardNumber(e.target.value)
+        }}} value={cardNumber} type="number" id='card' placeholder='Card number' />
         <div className="row">
           <input onChange={(e) => setName(e.target.value)} value={name} type="text" id='name' autoComplete='off' placeholder='Name' />
-          <input onKeyDown={handleKeyDownCode} onChange={handleKeyDownCode} value={ssvCode} type="text" id='code' placeholder='CCV code' />
+          <input onChange={(e)=>{if (ssvCode.length !== 3) {
+          setSsvCode(e.target.value)
+        }}} value={ssvCode} type="number" id='code' placeholder='CCV code' />
         </div>
         <hr />
         <div className="row">
@@ -167,7 +156,7 @@ export default function Payment() {
           </div>
           <p>save card details</p>
         </div>
-        <button onClick={subForm} disabled={cardNumber.length < 16 || ssvCode.length < 3 || !name} className="big_btn">Продолжить</button>
+        <button onClick={subForm} disabled={cardNumber.length !== 16 || ssvCode.length !== 3 || !name} className="big_btn">Продолжить</button>
       </div>}
       {!addData && <div className="logo_name_box">
         <div onClick={() => setAddData(!addData)} className='go_back'><p className='arr_transform'>{arrow}</p></div>
